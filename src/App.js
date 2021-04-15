@@ -1,10 +1,13 @@
 import './App.css';
 import Dexie from 'dexie';
+import { useState } from 'react'
 import { useLiveQuery } from "dexie-react-hooks";
 
 
 
 const App = () => {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState(null);
 
   const db = new Dexie('MarketList');
   db.version(1).stores(
@@ -16,13 +19,14 @@ const App = () => {
 
   const addItemToDb = async event => {
     event.preventDefault();
-    const name = document.querySelector('.item-name').value
-    const price = document.querySelector('.item-price').value
 
     await db.items.add({
       name,
       price: Number(price),
       itemHasBeenPurchased: false
+    }).then(() => {
+      setName('')
+      setPrice('')
     })
   }
 
@@ -61,8 +65,8 @@ const App = () => {
     <div className="container">
       <h3 className="green-text center-align">Market List App</h3>
       <form className="add-item-form" onSubmit={event => addItemToDb(event)} >
-        <input type="text" className="item-name" placeholder="Name of item" required />
-        <input type="number" step=".01" className="item-price" placeholder="Price in USD" required />
+        <input type="text" className="item-name" placeholder="Name of item" required value={name} onChange={(e) => setName(e.target.value)} />
+        <input type="number" step=".01" className="item-price" placeholder="Price in USD" required value={price} onChange={(e) => setPrice(e.target.value)} />
         <button type="submit" className="waves-effect waves-light btn right">Add item</button>
       </form>
       {allItems.length > 0 &&
