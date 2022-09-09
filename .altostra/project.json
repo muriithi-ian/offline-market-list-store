@@ -1,0 +1,21 @@
+{
+  "id": "offline-market-list-store-t010n6c",
+  "name": "offline-market-list-store",
+  "created": "2022-09-09T10:00:43.670Z",
+  "description": "",
+  "blueprints": [
+    {
+      "version": "2019-10-24",
+      "connections": {},
+      "resources": {},
+      "metadata": {
+        "designer": {
+          "resourcePositions": {}
+        }
+      },
+      "id": "offline-market-list-store-sz00nvx",
+      "name": "offline-market-list-store"
+    }
+  ],
+  "type": "altostra"
+}
