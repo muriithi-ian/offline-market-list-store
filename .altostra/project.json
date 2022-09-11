@@ -1,0 +1,68 @@
+{
+	"id": "offline-market-list-store",
+	"name": "offline-market-list-store",
+	"type": "altostra",
+	"description": "A static website with CDN distribution",
+	"created": "2022-09-11T17:50:25.453Z",
+	"blueprints": [
+		{
+			"id": "offline-market-list-store",
+			"name": "offline-market-list-store",
+			"description": "Static Website Template",
+			"version": "2019-10-24",
+			"connections": {
+				"SiteCdn01": {
+					"SiteFiles01": {
+						"bucketRoot": "",
+						"from": "SiteCdn01",
+						"route": "",
+						"to": "SiteFiles01",
+						"type": "connection.dependency.cdn-storage"
+					}
+				}
+			},
+			"metadata": {
+				"designer": {
+					"resourcePositions": {
+						"SiteCdn01": {
+							"x": 409,
+							"y": 282,
+							"z": 0
+						},
+						"SiteFiles01": {
+							"x": 648,
+							"y": 282,
+							"z": 0
+						}
+					}
+				}
+			},
+			"resources": {
+				"SiteCdn01": {
+					"defaultRoot": "index.html",
+					"id": "SiteCdn01",
+					"isSPA": true,
+					"name": "list-cdn",
+					"tls": {
+						"useTLS": true,
+						"httpRedirection": true
+					},
+					"type": "resource.cdn"
+				},
+				"SiteFiles01": {
+					"accessLevel": "public-read",
+					"filesSources": [
+						{
+							"path": "build",
+							"type": "files-source.project-dir"
+						}
+					],
+					"id": "SiteFiles01",
+					"name": "list",
+					"type": "resource.file-store"
+				}
+			},
+			"unsafe": false
+		}
+	]
+}
